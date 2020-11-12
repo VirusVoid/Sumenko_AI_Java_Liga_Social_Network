@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/**
+ * Обработка HTTP-запросов для работы с таблицей друзей
+ */
 @Component
 @RequestMapping("friend")
 @RequiredArgsConstructor
@@ -27,7 +30,6 @@ public class FriendsController {
      */
     @PostMapping
     public ResponseEntity<?> createFriend(@RequestBody @Valid Friends friends){
-      //  log.info("Регистрация нового пользователя user={}", userRegisterDto.toString());
         return friendsService.createFriendRequest(friends);
     }
 
@@ -37,7 +39,6 @@ public class FriendsController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<?> updateFriendRequest(@PathVariable Integer id, @RequestBody @Valid Friends friends){
-        //  log.info("Регистрация нового пользователя user={}", userRegisterDto.toString());
         return friendsService.updateFriendRequest(id, friends);
     }
 }

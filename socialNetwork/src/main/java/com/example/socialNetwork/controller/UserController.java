@@ -6,7 +6,6 @@ import com.example.socialNetwork.dto.UserRegistryDto;
 import com.example.socialNetwork.service.UserService;
 import com.example.socialNetwork.service.filters.UserFilter;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Обработка HTTP-запросов
+ * Обработка HTTP-запросов для работы с таблицей пользователей
  */
 @RestController
 @RequestMapping("/user")

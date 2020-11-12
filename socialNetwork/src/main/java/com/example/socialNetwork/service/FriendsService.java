@@ -13,10 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+/**
+ * Валидация данных заявки и отправка запросов в БД
+ */
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-@Slf4j
 public class FriendsService {
     private final FriendsRepository friendsRepository;
 
@@ -67,10 +69,7 @@ public class FriendsService {
     }
 
     /**
-     *
-     * @param received
-     * @param found
-     * @return
+     * Обновление статуса заявки в друзья
      */
     private Friends updateFriendsInformation(Friends received, Friends found) {
         found.setStatus(received.getStatus());
