@@ -4,23 +4,26 @@ import com.example.socialNetwork.domain.Friends;
 import com.example.socialNetwork.service.FriendsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@Component
 @RequestMapping("friend")
 @RequiredArgsConstructor
 @Slf4j
 public class FriendsController {
 
-    private final FriendsService friendsService;
+    @Autowired
+    private FriendsService friendsService;
 
     /**
      * Создать новую заявку в друзья
      * @param friends заявка в друзья
-     * @return
      */
     @PostMapping
     public ResponseEntity<?> createFriend(@RequestBody @Valid Friends friends){
@@ -30,8 +33,7 @@ public class FriendsController {
 
     /**
      * Обновить данные существующей заявки в друзья
-     * @param friends
-     * @return
+     * @param friends заявка в друзья
      */
     @PutMapping("/{id}")
     public ResponseEntity<?> updateFriendRequest(@PathVariable Integer id, @RequestBody @Valid Friends friends){

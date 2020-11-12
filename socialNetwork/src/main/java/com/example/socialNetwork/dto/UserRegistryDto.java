@@ -25,20 +25,4 @@ public class UserRegistryDto {
      */
     @NotEmpty
     private String surname;
-    /**
-     * Возраст
-     */
-    private Integer age;
-    /**
-     * Пол
-     */
-    private String gender;
-    /**
-     * Интересы
-     */
-    private String interests;
-    /**
-     * Город
-     */
-    private String city;
 }

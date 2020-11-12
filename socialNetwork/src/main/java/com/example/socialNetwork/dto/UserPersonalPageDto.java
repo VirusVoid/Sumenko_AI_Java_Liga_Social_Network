@@ -3,22 +3,18 @@ package com.example.socialNetwork.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
+/**
+ * Данные пользователя для персональной страницы
+ */
 @Data
 @NoArgsConstructor
-public class PersonalPageEditDto {
-    /**
-     * Идентификатор персональной страницы
-     */
-    private Integer id;
+public class UserPersonalPageDto {
     /**
      * Идентификатор пользователя
      */
-    @NotNull
-    private Integer user_id;
+    private Integer id;
     /**
      * Имя
      */
@@ -45,20 +41,4 @@ public class PersonalPageEditDto {
      * Город
      */
     private String city;
-    /**
-     * Языки
-     */
-    private String languages;
-    /**
-     * Образование
-     */
-    private String education;
-    /**
-     * Место работы
-     */
-    private String job;
-    /**
-     * Жизненная позиция
-     */
-    private String life_phylosophy;
 }

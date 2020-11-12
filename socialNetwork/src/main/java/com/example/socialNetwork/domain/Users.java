@@ -36,21 +36,21 @@ public class Users {
     /**
      * Возраст
      */
-    @Column(name = "age", nullable = false)
+    @Column(name = "age")
     private Integer age;
     /**
      * Пол
      */
-    @Column(name = "gender", nullable = false)
+    @Column(name = "gender")
     private String gender;
     /**
      * Интересы
      */
-    @Column(name = "interests", nullable = false)
+    @Column(name = "interests")
     private String interests;
     /**
      * Город
      */
-    @Column(name = "city", nullable = false)
+    @Column(name = "city")
     private String city;
 }

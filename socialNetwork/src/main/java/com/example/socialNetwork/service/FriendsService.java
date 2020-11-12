@@ -26,7 +26,6 @@ public class FriendsService {
      * Проверка данных заявки и добавление в базу данных
      *
      * @param friends регистрационные данные пользователя
-     * @return
      */
     @Transactional
     public ResponseEntity createFriendRequest(Friends friends) {
@@ -41,9 +40,9 @@ public class FriendsService {
             Friends reverseResult = friendsRepository.findByFirstFriendAndSecondFriend(friends.getSecondFriend(),
                     friends.getFirstFriend());
             if (result == null && reverseResult == null) {
-                Friends friends1 = friendsRepository.save(friends);
-                return new ResponseEntity<>(friends1.getId(), HttpStatus.OK);
-            } else return new ResponseEntity<>("Заявка в друзья уже существует", HttpStatus.BAD_REQUEST);
+                Friends friendship = friendsRepository.save(friends);
+                return new ResponseEntity<>(friendship.getId(), HttpStatus.OK);
+            } else return new ResponseEntity<>("Заявка на добавление в друзья уже существует", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>("Проверьте входные значения", HttpStatus.BAD_REQUEST);
     }
@@ -52,24 +51,30 @@ public class FriendsService {
      * Проверка данных заявки и обновление информации в базе данных
      *
      * @param friends идентификатор отправителя, получателя заявки и статус
-     * @return успешность выполнения операции
      */
     @Transactional
     public ResponseEntity updateFriendRequest(Integer id, Friends friends) {
         Friends foundRequest = Optional.ofNullable(id)
                 .flatMap(friendsRepository::findById)
-                .orElseThrow(() -> new RuntimeException("Заявка на добавление в друзья не найдена"));
+                .orElseThrow(() -> new RuntimeException("Заявка не найдена"));
+        if (!friends.getFirstFriend().equals(foundRequest.getFirstFriend()) ||
+                !friends.getSecondFriend().equals(foundRequest.getSecondFriend())) {
+            return new ResponseEntity<>("Проверьте идентификаторы пользователей", HttpStatus.BAD_REQUEST);
+        }
         Friends friend = updateFriendsInformation(friends, foundRequest);
         friend = friendsRepository.save(friend);
         return new ResponseEntity<>(friend.getId(), HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param received
+     * @param found
+     * @return
+     */
     private Friends updateFriendsInformation(Friends received, Friends found) {
-        found.setFirstFriend(received.getFirstFriend());
-        found.setSecondFriend(received.getSecondFriend());
         found.setStatus(received.getStatus());
         System.out.println(received.getStatus());
         return found;
-
     }
 }
