@@ -18,7 +18,6 @@ import javax.validation.Valid;
 @Component
 @RequestMapping("friend")
 @RequiredArgsConstructor
-@Slf4j
 public class FriendsController {
 
     @Autowired
